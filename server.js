@@ -1,3 +1,4 @@
+require('dotenv').config()
 let express = require('express')
 let mongodb = require('mongodb')
 let sanitizeHTML = require('sanitize-html')
@@ -7,7 +8,7 @@ let db
 
 app.use(express.static('public'))
 
-let connectionString = 'mongodb+srv://todoAppUser:<password>@cluster0.7p3se.mongodb.net/TodoApp?retryWrites=true&w=majority'
+let connectionString = 'mongodb+srv://todoAppUser:'+process.env.DB_PASS+'@cluster0.7p3se.mongodb.net/TodoApp?retryWrites=true&w=majority'
 
 mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client)=> {
   db = client.db()
